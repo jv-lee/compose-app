@@ -1,6 +1,7 @@
 package com.lee.compose.page
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.Text
@@ -21,14 +22,19 @@ fun DetailsPage(navController: NavController) {
         modifier = Modifier
             .fillMaxWidth()
             .fillMaxHeight()
-            .background(Color.White)
+            .background(Color.Yellow)
     ) {
         val (text) = createRefs()
-        Text(text = "details page.", color = Color.Black, modifier = Modifier.constrainAs(text) {
-            start.linkTo(parent.start)
-            top.linkTo(parent.top)
-            end.linkTo(parent.end)
-            bottom.linkTo(parent.bottom)
-        })
+        Text(text = "details page.", color = Color.Black, modifier = Modifier
+            .clickable {
+                navController.popBackStack()
+            }
+            .constrainAs(text) {
+                start.linkTo(parent.start)
+                top.linkTo(parent.top)
+                end.linkTo(parent.end)
+                bottom.linkTo(parent.bottom)
+            })
+
     }
 }

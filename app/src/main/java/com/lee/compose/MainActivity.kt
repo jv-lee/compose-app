@@ -3,12 +3,9 @@ package com.lee.compose
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.*
 import androidx.compose.animation.core.FastOutLinearInEasing
 import androidx.compose.animation.core.tween
-import androidx.compose.animation.slideInVertically
-import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.BottomNavigation
@@ -24,10 +21,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
+import androidx.navigation.NavBackStackEntry
+import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.currentBackStackEntryAsState
-import androidx.navigation.compose.rememberNavController
+import com.google.accompanist.navigation.animation.AnimatedNavHost
+import com.google.accompanist.navigation.animation.composable
+import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.lee.compose.page.DetailsPage
 import com.lee.compose.page.HomePage
 import com.lee.compose.page.MePage
@@ -49,7 +48,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Navigator() {
     val selectIndex = remember { mutableStateOf(0) }
-    val navController = rememberNavController()
+    val navController = rememberAnimatedNavController()
     val navigationVisible = remember { mutableStateOf(true) }
 
     // 监听当前页面变化，非首页隐藏navigationBar
@@ -108,15 +107,50 @@ fun Navigator() {
             }
         }
     }, content = {
-        NavHost(navController = navController, startDestination = MainTab.Home.route) {
-            composable(MainTab.Home.route) { HomePage(navController = navController) }
-            composable(MainTab.Square.route) { SquarePage(navController = navController) }
-            composable(MainTab.Me.route) { MePage(navController = navController) }
-            composable(PageRoute.Details.route) { DetailsPage(navController = navController) }
+        AnimatedNavHost(navController = navController, startDestination = MainTab.Home.route) {
+            tabComposable(MainTab.Home.route) { HomePage(navController = navController) }
+            tabComposable(MainTab.Square.route) { SquarePage(navController = navController) }
+            tabComposable(MainTab.Me.route) { MePage(navController = navController) }
+            sideComposable(PageRoute.Details.route) { DetailsPage(navController = navController) }
         }
     })
 
 }
+
+@ExperimentalAnimationApi
+fun NavGraphBuilder.tabComposable(
+    route: String,
+    content: @Composable AnimatedVisibilityScope.(NavBackStackEntry) -> Unit
+) {
+    composable(route = route, content = content,
+        enterTransition = { fadeIn(initialAlpha = 1F) },
+        exitTransition = { fadeOut(targetAlpha = 1F) },
+        popEnterTransition = { fadeIn(initialAlpha = 1F) },
+        popExitTransition = { fadeOut(targetAlpha = 1F) })
+}
+
+@ExperimentalAnimationApi
+fun NavGraphBuilder.sideComposable(
+    route: String,
+    content: @Composable AnimatedVisibilityScope.(NavBackStackEntry) -> Unit
+) {
+    composable(route = route, content = content,
+        enterTransition = {
+            slideInHorizontally(initialOffsetX = {
+                it * 2
+            })
+        },
+        exitTransition = {
+            slideOutHorizontally()
+        },
+        popEnterTransition = {
+            slideInHorizontally()
+        },
+        popExitTransition = {
+            slideOutHorizontally()
+        })
+}
+
 
 val tabItems = listOf(MainTab.Home, MainTab.Square, MainTab.Me)
 

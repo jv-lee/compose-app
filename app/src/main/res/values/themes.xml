@@ -17,6 +17,8 @@
     <style name="Theme.ComposeApp.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+<!--        <item name="android:windowBackground">@android:color/white</item>-->
+        <item name="android:windowBackground">@android:color/white</item>
     </style>
 
     <style name="Theme.ComposeApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

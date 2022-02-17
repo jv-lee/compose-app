@@ -66,6 +66,7 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:$navigation_version")
     implementation("androidx.navigation:navigation-ui-ktx:$navigation_version")
     implementation("androidx.navigation:navigation-compose:$navigation_version")
+    implementation "com.google.accompanist:accompanist-navigation-animation:0.24.2-alpha"
 
     // test
     testImplementation 'junit:junit:4.+'
