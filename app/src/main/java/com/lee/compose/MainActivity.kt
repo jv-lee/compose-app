@@ -136,9 +136,7 @@ fun NavGraphBuilder.sideComposable(
 ) {
     composable(route = route, content = content,
         enterTransition = {
-            slideInHorizontally(initialOffsetX = {
-                it * 2
-            })
+            slideInHorizontally(initialOffsetX = { it * 2 })
         },
         exitTransition = {
             slideOutHorizontally()
