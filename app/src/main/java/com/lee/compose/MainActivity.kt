@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.*
-import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.VisibilityThreshold
 import androidx.compose.animation.core.spring
 import androidx.compose.foundation.layout.fillMaxSize
@@ -65,11 +64,10 @@ fun NavGraphBuilder.sideComposable(
         },
         // 打开页面退出动画
         exitTransition = {
-            slideOutHorizontally(
-                spring(
-                    stiffness = 25F,
-                    visibilityThreshold = IntOffset.VisibilityThreshold
-                ), targetOffsetX = { -it })
+            slideOutHorizontally(spring(
+                stiffness = 1F,
+                visibilityThreshold = IntOffset.VisibilityThreshold
+            ), targetOffsetX = { -it })
         },
         // 关闭页面进入动画
         popEnterTransition = {
@@ -78,7 +76,7 @@ fun NavGraphBuilder.sideComposable(
         // 关闭页面退出动画
         popExitTransition = {
             slideOutHorizontally(spring(
-                stiffness = Spring.StiffnessVeryLow,
+                stiffness = 25f,
                 visibilityThreshold = IntOffset.VisibilityThreshold
             ), targetOffsetX = { it * 2 })
         }
