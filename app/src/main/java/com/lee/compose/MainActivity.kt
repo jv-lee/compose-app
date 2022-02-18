@@ -19,12 +19,14 @@ import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.lee.compose.page.DetailsChildPage
 import com.lee.compose.page.DetailsPage
 import com.lee.compose.page.MainPage
+import com.lee.compose.tools.StatusTools.statusBar
 import com.lee.compose.ui.theme.ComposeAppTheme
 
 @ExperimentalAnimationApi
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        window.statusBar()
         super.onCreate(savedInstanceState)
         setContent {
             ComposeAppTheme { Navigator() }
@@ -76,7 +78,7 @@ fun NavGraphBuilder.sideComposable(
         // 关闭页面退出动画
         popExitTransition = {
             slideOutHorizontally(spring(
-                stiffness = 25f,
+                stiffness = 50f,
                 visibilityThreshold = IntOffset.VisibilityThreshold
             ), targetOffsetX = { it * 2 })
         }

@@ -23,7 +23,7 @@ fun DetailsChildPage(navController: NavController) {
             .fillMaxHeight()
             .background(Color.Yellow)
     ) {
-        val (text) = createRefs()
+        val (text, topText) = createRefs()
         Text(
             text = "details child page.",
             color = Color.Black,
@@ -33,6 +33,10 @@ fun DetailsChildPage(navController: NavController) {
                 end.linkTo(parent.end)
                 bottom.linkTo(parent.bottom)
             })
-
+        Text(text = "statusBar", modifier = Modifier.constrainAs(topText) {
+            start.linkTo(parent.start)
+            top.linkTo(parent.top)
+            end.linkTo(parent.end)
+        })
     }
 }
