@@ -2,6 +2,8 @@ package com.lee.compose.page
 
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
@@ -16,6 +18,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.google.accompanist.insets.navigationBarsHeight
 import com.lee.compose.R
 
 /**
@@ -29,18 +32,21 @@ fun MainPage(rootNavController: NavHostController) {
     val selectIndex = remember { mutableStateOf(0) }
 
     Scaffold(Modifier.fillMaxSize(), backgroundColor = Color.Cyan, bottomBar = {
-        BottomNavigation(backgroundColor = Color.White, elevation = 3.dp) {
-            tabItems.forEachIndexed { index, item ->
-                BottomNavigationItem(selected = index == selectIndex.value, onClick = {
-                    selectIndex.value = index
-                }, icon = {
-                    val icon = if (selectIndex.value == index) item.selectIcon else item.icon
-                    Image(painter = painterResource(id = icon), contentDescription = null)
-                }, label = {
-                    val color = if (index == selectIndex.value) Color.Black else Color.Gray
-                    Text(text = item.name, textAlign = TextAlign.Center, color = color)
-                })
+        Column {
+            BottomNavigation(backgroundColor = Color.White, elevation = 3.dp) {
+                tabItems.forEachIndexed { index, item ->
+                    BottomNavigationItem(selected = index == selectIndex.value, onClick = {
+                        selectIndex.value = index
+                    }, icon = {
+                        val icon = if (selectIndex.value == index) item.selectIcon else item.icon
+                        Image(painter = painterResource(id = icon), contentDescription = null)
+                    }, label = {
+                        val color = if (index == selectIndex.value) Color.Black else Color.Gray
+                        Text(text = item.name, textAlign = TextAlign.Center, color = color)
+                    })
+                }
             }
+            Spacer(modifier = Modifier.navigationBarsHeight())
         }
     }, content = {
         when (selectIndex.value) {

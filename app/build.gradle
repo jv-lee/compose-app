@@ -68,6 +68,11 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:$navigation_version")
     implementation "com.google.accompanist:accompanist-navigation-animation:$accompanist_version"
 
+    // insets
+    implementation "com.google.accompanist:accompanist-insets:$accompanist_version"
+    implementation "com.google.accompanist:accompanist-insets-ui:$accompanist_version"
+    implementation "com.google.accompanist:accompanist-systemuicontroller:$accompanist_version"
+
     // test
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
