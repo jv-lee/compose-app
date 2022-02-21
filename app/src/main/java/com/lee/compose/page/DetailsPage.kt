@@ -4,11 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
 import androidx.compose.material.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -30,18 +26,15 @@ fun DetailsPage(navController: NavController) {
             .fillMaxHeight()
             .background(Color.Yellow)
     ) {
-        val (appBar, text) = createRefs()
-        AppBarView(title = {
-            Text(text = "Details")
-        }, navigationIcon = {
-            IconButton(onClick = { navController.popBackStack() }) {
-                Icon(Icons.Filled.ArrowBack, "")
-            }
-        },modifier = Modifier.constrainAs(appBar) {
-            start.linkTo(parent.start)
-            top.linkTo(parent.top)
-            end.linkTo(parent.end)
-        })
+        val (appBar, text, text2) = createRefs()
+        AppBarView(
+            title = "Details",
+            navigationClick = { navController.popBackStack() },
+            modifier = Modifier.constrainAs(appBar) {
+                start.linkTo(parent.start)
+                top.linkTo(parent.top)
+                end.linkTo(parent.end)
+            })
         Text(text = "details page.", color = Color.Black, modifier = Modifier
             .clickable {
                 navController.navigate(PageRoute.DetailsChild.route)
@@ -52,6 +45,11 @@ fun DetailsPage(navController: NavController) {
                 end.linkTo(parent.end)
                 bottom.linkTo(parent.bottom)
             })
+        Text(text = "text", color = Color.Black, modifier = Modifier.constrainAs(text2) {
+            start.linkTo(text.start)
+            top.linkTo(text.bottom)
+            end.linkTo(text.end)
+        })
 
     }
 }
