@@ -28,8 +28,8 @@ import com.google.accompanist.insets.statusBarsHeight
  */
 @Composable
 fun AppBarView(
-    title: String = "",
     modifier: Modifier = Modifier,
+    title: String = "",
     navigationIcon: ImageVector = Icons.Filled.ArrowBack,
     navigationClick: () -> Unit = {},
     actionIcon: ImageVector = Icons.Filled.MoreVert,
