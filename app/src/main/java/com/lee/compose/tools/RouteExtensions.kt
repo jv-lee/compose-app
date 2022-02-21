@@ -77,7 +77,7 @@ fun NavGraphBuilder.sideComposable(
         popExitTransition = {
             slideOutHorizontally(
                 spring(
-                    stiffness = 25f,
+                    stiffness = 50f,
                     visibilityThreshold = IntOffset.VisibilityThreshold
                 ), targetOffsetX = { it * 2 })
         }
