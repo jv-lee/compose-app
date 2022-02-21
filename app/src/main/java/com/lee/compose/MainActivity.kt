@@ -67,18 +67,18 @@ fun NavGraphBuilder.sideComposable(
         // 打开页面退出动画
         exitTransition = {
             slideOutHorizontally(spring(
-                stiffness = 1F,
+                stiffness = 25F,
                 visibilityThreshold = IntOffset.VisibilityThreshold
-            ), targetOffsetX = { -(it * 0.2).toInt() })
+            ), targetOffsetX = { -(it * 0.25).toInt() })
         },
         // 关闭页面进入动画
         popEnterTransition = {
-            slideInHorizontally(initialOffsetX = { -(it * 0.2).toInt() })
+            slideInHorizontally(initialOffsetX = { -(it * 0.25).toInt() })
         },
         // 关闭页面退出动画
         popExitTransition = {
             slideOutHorizontally(spring(
-                stiffness = 50f,
+                stiffness = 25f,
                 visibilityThreshold = IntOffset.VisibilityThreshold
             ), targetOffsetX = { it * 2 })
         }
