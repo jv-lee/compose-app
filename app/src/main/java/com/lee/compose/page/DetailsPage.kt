@@ -25,6 +25,7 @@ fun DetailsPage(navController: NavController) {
             .fillMaxWidth()
             .fillMaxHeight()
             .background(Color.Yellow)
+            .clickable {}
     ) {
         val (appBar, text, text2) = createRefs()
         AppBarView(

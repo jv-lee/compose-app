@@ -1,6 +1,7 @@
 package com.lee.compose.page
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.Text
@@ -22,6 +23,7 @@ fun DetailsChildPage(navController: NavController) {
             .fillMaxWidth()
             .fillMaxHeight()
             .background(Color.Yellow)
+            .clickable { }
     ) {
         val (text, topText) = createRefs()
         Text(
