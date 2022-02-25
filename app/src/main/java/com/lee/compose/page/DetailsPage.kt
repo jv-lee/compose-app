@@ -48,8 +48,8 @@ fun DetailsPage(navController: NavController) {
             })
         Text(text = "text", color = Color.Black, modifier = Modifier.constrainAs(text2) {
             start.linkTo(text.start)
-            top.linkTo(text.bottom)
             end.linkTo(text.end)
+            bottom.linkTo(parent.bottom)
         })
 
     }

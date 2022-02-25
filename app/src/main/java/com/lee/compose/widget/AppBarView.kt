@@ -35,7 +35,7 @@ fun AppBarView(
     actionIcon: ImageVector = Icons.Filled.MoreVert,
     actionClick: () -> Unit = {},
     backgroundColor: Color = Color.Black,
-    contentColor: Color = contentColorFor(backgroundColor),
+    contentColor: Color = Color.White,
     elevation: Dp = AppBarDefaults.TopAppBarElevation,
     navigationEnable: Boolean = true,
     actionEnable: Boolean = false
